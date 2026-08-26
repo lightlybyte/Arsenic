@@ -1,7 +1,7 @@
 modLoader = "javafml"
 loaderVersion = "[47,)"
 #issueTrackerURL = ""
-license = "Insert License Here"
+license = "MIT"
 
 [[mods]]
 modId = "arsenic"
@@ -11,7 +11,7 @@ authors = "TheLightlybyt"
 description = '''
 Arsenic is a very powerful performance mod which rewrites most of the games faulty and unoptimised code for cleaner more faster code
 '''
-#logoFile = ""
+logoFile = "icon/icon.png"
 
 [[dependencies.arsenic]]
 modId = "forge"

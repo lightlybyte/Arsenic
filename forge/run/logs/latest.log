@@ -1,0 +1,109 @@
+[22:43:19] [main/INFO] (Launcher) ModLauncher running: args [--launchTarget, forgeclientuserdev, --version, MOD_DEV, --assetIndex, 1.20.1-5, --assetsDir, C:\Users\light\.gradle\caches\fabric-loom\assets, --gameDir, ., --fml.forgeVersion, 47.4.22, --fml.mcVersion, 1.20.1, --fml.forgeGroup, net.minecraftforge, --fml.mcpVersion, 20230612.114412, -mixin.config, arsenic.mixins.json, --mixin.config, arsenic.mixins.json]
+[22:43:19] [main/INFO] (Launcher) ModLauncher 10.0.9+10.0.9+main.dcd20f30 starting: java version 21.0.12 by Eclipse Adoptium; OS Windows 11 arch amd64 version 10.0
+[22:43:19] [main/INFO] (unprotect) Initializing Unprotect using ModLauncher backend, target: Minecraft and loader classes (minecraft+forge)
+[22:43:20] [main/WARN] (FMLConfig) Configuration file C:\Users\light\OneDrive\Desktop\Arsenic\forge\run\config\fml.toml is not correct. Correcting
+[22:43:20] [main/INFO] (FMLConfig) Incorrect key [earlyWindowSkipGLVersions] was corrected from null to []
+[22:43:20] [main/INFO] (FMLConfig) Incorrect key [earlyWindowLogHelpMessage] was corrected from null to true
+[22:43:20] [main/INFO] (FMLConfig) Incorrect key [earlyWindowSquir] was corrected from null to false
+[22:43:20] [main/INFO] (FMLConfig) Incorrect key [earlyWindowShowCPU] was corrected from null to false
+[22:43:20] [main/INFO] (ImmediateWindowHandler) Loading ImmediateWindowProvider fmlearlywindow
+[22:43:20] [main/INFO] (EARLYDISPLAY) Trying GL version 4.6
+[22:43:20] [main/INFO] (EARLYDISPLAY) If this message is the only thing at the bottom of your log before a crash, you probably have a driver issue.
+
+Possible solutions:
+A) Make sure Minecraft is set to prefer high performance graphics in the OS and/or driver control panel
+B) Check for driver updates on the graphics brand's website
+C) Try reinstalling your graphics drivers
+D) If still not working after trying all of the above, ask for further help on the Forge forums or Discord
+
+You can safely ignore this message if the game starts up successfully.
+[22:43:20] [main/INFO] (EARLYDISPLAY) Requested GL version 4.6 got version 4.6
+[22:43:20] [main/INFO] (mixin) SpongePowered MIXIN Subsystem Version=0.8.5 Source=union:/C:/Users/light/.gradle/caches/modules-2/files-2.1/dev.architectury/mixin-patched/0.8.5.12/cf1f787f58d3b08b0cb53ecbba7928c09a1893c8/mixin-patched-0.8.5.12.jar%23130!/ Service=ModLauncher Env=CLIENT
+[22:43:20] [pool-5-thread-1/INFO] (EARLYDISPLAY) GL info: Intel(R) HD Graphics 620 GL version 4.6.0 - Build 31.0.101.2134, Intel
+[22:43:21] [main/WARN] (ModFileParser) Mod file C:\Users\light\.gradle\caches\modules-2\files-2.1\net.minecraftforge\javafmllanguage\1.20.1-47.4.22\c3fe3323c9f8651aff7b34a665730c312b9e203f\javafmllanguage-1.20.1-47.4.22.jar is missing mods.toml file
+[22:43:21] [main/WARN] (ModFileParser) Mod file C:\Users\light\.gradle\caches\modules-2\files-2.1\net.minecraftforge\lowcodelanguage\1.20.1-47.4.22\c719255918fe74052292279a1242a26fbe92452a\lowcodelanguage-1.20.1-47.4.22.jar is missing mods.toml file
+[22:43:21] [main/WARN] (ModFileParser) Mod file C:\Users\light\.gradle\caches\modules-2\files-2.1\net.minecraftforge\mclanguage\1.20.1-47.4.22\78b273bf6a3b42e430cd60ca1636656ae5993d6c\mclanguage-1.20.1-47.4.22.jar is missing mods.toml file
+[22:43:21] [main/WARN] (ModFileParser) Mod file C:\Users\light\.gradle\caches\modules-2\files-2.1\net.minecraftforge\fmlcore\1.20.1-47.4.22\1367fc72fd188372dd79e824c611e248dcd000e\fmlcore-1.20.1-47.4.22.jar is missing mods.toml file
+[22:43:21] [main/INFO] (ModDiscoverer) Found mod file javafmllanguage-1.20.1-47.4.22.jar of type LANGPROVIDER with provider net.minecraftforge.fml.loading.moddiscovery.MinecraftLocator@12e8c5c4
+[22:43:21] [main/INFO] (ModDiscoverer) Found mod file lowcodelanguage-1.20.1-47.4.22.jar of type LANGPROVIDER with provider net.minecraftforge.fml.loading.moddiscovery.MinecraftLocator@12e8c5c4
+[22:43:21] [main/INFO] (ModDiscoverer) Found mod file mclanguage-1.20.1-47.4.22.jar of type LANGPROVIDER with provider net.minecraftforge.fml.loading.moddiscovery.MinecraftLocator@12e8c5c4
+[22:43:21] [main/INFO] (ModDiscoverer) Found mod file fmlcore-1.20.1-47.4.22.jar of type LIBRARY with provider net.minecraftforge.fml.loading.moddiscovery.MinecraftLocator@12e8c5c4
+[22:43:21] [main/INFO] (ModDiscoverer) Found mod file forge-1.20.1-47.4.22-minecraft-merged-1.20.1-loom.mappings.1_20_1.layered+hash.40359-v2-forge-1.20.1-47.4.22.jar of type MOD with provider net.minecraftforge.fml.loading.moddiscovery.MinecraftLocator@12e8c5c4
+[22:43:21] [main/INFO] (ModDiscoverer) Found mod file main of type MOD with provider net.minecraftforge.fml.loading.moddiscovery.MinecraftLocator@12e8c5c4
+[22:43:21] [main/INFO] (ModDiscoverer) Found mod file  of type MOD with provider net.minecraftforge.fml.loading.moddiscovery.MinecraftLocator@12e8c5c4
+[22:43:21] [main/INFO] (ModDiscoverer) Found mod file architectury-forge-393ec4c8-9.2.14.jar of type MOD with provider net.minecraftforge.fml.loading.moddiscovery.ClasspathLocator@676beb9f
+[22:43:21] [main/INFO] (ModDiscoverer) Found mod file 5680956723308652790.jar of type MOD with provider net.minecraftforge.fml.loading.moddiscovery.ClasspathLocator@676beb9f
+[22:43:21] [main/INFO] (ModDiscoverer) Found mod file architectury-forge-393ec4c8-9.2.14.jar of type MOD with provider net.minecraftforge.fml.loading.moddiscovery.ClasspathLocator@676beb9f
+[22:43:21] [main/INFO] (ModDiscoverer) Found mod file 5680956723308652790.jar of type MOD with provider net.minecraftforge.fml.loading.moddiscovery.ClasspathLocator@676beb9f
+[22:43:21] [main/INFO] (JarInJarDependencyLocator) No dependencies to load found. Skipping!
+[22:43:24] [main/INFO] (mixin) Compatibility level set to JAVA_17
+[22:43:25] [main/INFO] (LaunchServiceHandler) Launching target 'forgeclientuserdev' with arguments [--version, MOD_DEV, --gameDir, ., --assetsDir, C:\Users\light\.gradle\caches\fabric-loom\assets, --assetIndex, 1.20.1-5]
+[22:43:25] [main/INFO] (unprotect) Found 7423 Minecraft classes
+[22:43:25] [main/INFO] (mixin) Remapping refMap architectury-forge-refmap.json using RemapperChain (Architectury Patched)
+[22:43:25] [main/INFO] (mixin) Remapping refMap architectury-common-refmap.json using RemapperChain (Architectury Patched)
+[26Aug2026 22:43:35.166] [Datafixer Bootstrap/INFO] [com.mojang.datafixers.DataFixerBuilder/]: 188 Datafixer optimizations took 571 milliseconds
+[26Aug2026 22:43:39.653] [Render thread/WARN] [net.minecraft.server.packs.VanillaPackResourcesBuilder/]: Assets URL 'union:/C:/Users/light/.gradle/caches/fabric-loom/minecraftMaven/net/minecraft/forge-1.20.1-47.4.22-minecraft-merged/1.20.1-loom.mappings.1_20_1.layered+hash.40359-v2-forge-1.20.1-47.4.22/forge-1.20.1-47.4.22-minecraft-merged-1.20.1-loom.mappings.1_20_1.layered+hash.40359-v2-forge-1.20.1-47.4.22.jar%23201!/assets/.mcassetsroot' uses unexpected schema
+[26Aug2026 22:43:39.655] [Render thread/WARN] [net.minecraft.server.packs.VanillaPackResourcesBuilder/]: Assets URL 'union:/C:/Users/light/.gradle/caches/fabric-loom/minecraftMaven/net/minecraft/forge-1.20.1-47.4.22-minecraft-merged/1.20.1-loom.mappings.1_20_1.layered+hash.40359-v2-forge-1.20.1-47.4.22/forge-1.20.1-47.4.22-minecraft-merged-1.20.1-loom.mappings.1_20_1.layered+hash.40359-v2-forge-1.20.1-47.4.22.jar%23201!/data/.mcassetsroot' uses unexpected schema
+[26Aug2026 22:43:39.724] [Render thread/INFO] [com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService/]: Environment: authHost='https://authserver.mojang.com', accountsHost='https://api.mojang.com', sessionHost='https://sessionserver.mojang.com', servicesHost='https://api.minecraftservices.com', name='PROD'
+[26Aug2026 22:43:39.750] [Render thread/INFO] [net.minecraft.client.Minecraft/]: Setting user: Dev
+[26Aug2026 22:43:40.133] [Render thread/INFO] [net.minecraft.client.Minecraft/]: Backend library: LWJGL version 3.3.2+13
+[26Aug2026 22:43:41.151] [modloading-worker-0/INFO] [net.minecraftforge.common.ForgeMod/FORGEMOD]: Forge mod loading, version 47.4.22, for MC 1.20.1 with MCP 20230612.114412
+[26Aug2026 22:43:41.155] [modloading-worker-0/INFO] [net.minecraftforge.common.MinecraftForge/FORGE]: MinecraftForge v47.4.22 Initialized
+[26Aug2026 22:43:41.557] [modloading-worker-0/INFO] [arsenic/]: ARSENIC!
+[26Aug2026 22:43:41.608] [modloading-worker-0/INFO] [arsenic/]: Forge mod instance created!
+[26Aug2026 22:43:42.443] [modloading-worker-0/INFO] [dev.architectury.networking.forge.NetworkManagerImpl/]: Registering S2C receiver with id architectury:sync_ids
+[26Aug2026 22:43:42.449] [modloading-worker-0/INFO] [dev.architectury.networking.forge.NetworkManagerImpl/]: Registering C2S receiver with id architectury:sync_ids
+[26Aug2026 22:43:45.766] [Render thread/INFO] [net.minecraftforge.gametest.ForgeGameTestHooks/]: Enabled Gametest Namespaces: []
+[26Aug2026 22:43:46.377] [Render thread/INFO] [net.minecraft.server.packs.resources.ReloadableResourceManager/]: Reloading ResourceManager: vanilla, mod_resources
+[26Aug2026 22:43:46.447] [modloading-worker-0/WARN] [net.minecraftforge.common.ForgeConfigSpec/CORE]: Configuration file C:\Users\light\OneDrive\Desktop\Arsenic\forge\run\config\forge-client.toml is not correct. Correcting
+[26Aug2026 22:43:46.455] [modloading-worker-0/WARN] [net.minecraftforge.common.ForgeConfigSpec/CORE]: Incorrect key client was corrected from null to its default, SimpleCommentedConfig:{}. 
+[26Aug2026 22:43:46.455] [modloading-worker-0/WARN] [net.minecraftforge.common.ForgeConfigSpec/CORE]: Incorrect key client.alwaysSetupTerrainOffThread was corrected from null to its default, false. 
+[26Aug2026 22:43:46.461] [modloading-worker-0/WARN] [net.minecraftforge.common.ForgeConfigSpec/CORE]: Incorrect key client.experimentalForgeLightPipelineEnabled was corrected from null to its default, false. 
+[26Aug2026 22:43:46.464] [modloading-worker-0/WARN] [net.minecraftforge.common.ForgeConfigSpec/CORE]: Incorrect key client.showLoadWarnings was corrected from null to its default, true. 
+[26Aug2026 22:43:46.464] [modloading-worker-0/WARN] [net.minecraftforge.common.ForgeConfigSpec/CORE]: Incorrect key client.useCombinedDepthStencilAttachment was corrected from null to its default, false. 
+[26Aug2026 22:43:46.472] [modloading-worker-0/WARN] [net.minecraftforge.common.ForgeConfigSpec/CORE]: Incorrect key client.compressLanIPv6Addresses was corrected from null to its default, true. 
+[26Aug2026 22:43:46.479] [modloading-worker-0/WARN] [net.minecraftforge.common.ForgeConfigSpec/CORE]: Incorrect key client.calculateAllNormals was corrected from null to its default, false. 
+[26Aug2026 22:43:46.479] [modloading-worker-0/WARN] [net.minecraftforge.common.ForgeConfigSpec/CORE]: Incorrect key client.stabilizeDirectionGetNearest was corrected from null to its default, true. 
+[26Aug2026 22:43:46.535] [modloading-worker-0/WARN] [net.minecraftforge.common.ForgeConfigSpec/CORE]: Incorrect key client.allowMipmapLowering was corrected from null to its default, false. 
+[26Aug2026 22:43:47.027] [Worker-Main-1/INFO] [net.minecraft.client.gui.font.providers.UnihexProvider/]: Found unifont_all_no_pua-15.0.06.hex, loading
+[26Aug2026 22:43:47.666] [Forge Version Check/INFO] [net.minecraftforge.fml.VersionChecker/]: [forge] Starting version check at https://files.minecraftforge.net/net/minecraftforge/forge/promotions_slim.json
+[26Aug2026 22:43:50.209] [Forge Version Check/INFO] [net.minecraftforge.fml.VersionChecker/]: [forge] Found status: OUTDATED Current: 47.4.22 Target: 47.4.23
+[26Aug2026 22:43:52.304] [Render thread/INFO] [arsenic/]: === Arsenic v0.1.0 ===
+[26Aug2026 22:43:52.315] [Render thread/INFO] [arsenic/]: Loading Arsenic - The true greater version of Sodium
+[26Aug2026 22:43:52.517] [Render thread/INFO] [arsenic/]: ThreadManager initialized with 4 workers
+[26Aug2026 22:43:52.960] [Render thread/INFO] [arsenic/]: RenderManager initialized
+[26Aug2026 22:43:52.960] [Render thread/INFO] [arsenic/]: System Information:
+[26Aug2026 22:43:52.960] [Render thread/INFO] [arsenic/]:   - OS: Windows 11 10.0
+[26Aug2026 22:43:52.960] [Render thread/INFO] [arsenic/]:   - Architecture: amd64
+[26Aug2026 22:43:52.962] [Render thread/INFO] [arsenic/]:   - Java Version: 21.0.12
+[26Aug2026 22:43:52.963] [Render thread/INFO] [arsenic/]:   - Available Processors: 4
+[26Aug2026 22:43:52.966] [Render thread/INFO] [arsenic/]:   - Max Memory: 4052 MB
+[26Aug2026 22:43:52.967] [Render thread/INFO] [arsenic/]: Arsenic Features:
+[26Aug2026 22:43:52.967] [Render thread/INFO] [arsenic/]:   - Multithreaded Frustum Culling: ENABLED
+[26Aug2026 22:43:52.967] [Render thread/INFO] [arsenic/]:   - Greedy Meshing: PENDING
+[26Aug2026 22:43:52.969] [Render thread/INFO] [arsenic/]:   - Batch Rendering: PENDING
+[26Aug2026 22:43:52.969] [Render thread/INFO] [arsenic/]:   - OpenGL 4.6 Support: PENDING
+[26Aug2026 22:43:52.969] [Render thread/INFO] [arsenic/]:   - Vulkan Support: PENDING
+[26Aug2026 22:43:52.969] [Render thread/INFO] [arsenic/]:   - Shader Support: PENDING
+[26Aug2026 22:43:52.969] [Render thread/INFO] [arsenic/]: Arsenic initialization complete!
+[26Aug2026 22:43:52.969] [Render thread/INFO] [arsenic/]: Forge common setup complete!
+[26Aug2026 22:43:52.998] [Render thread/INFO] [arsenic/]: Forge client setup complete!
+[26Aug2026 22:43:58.150] [Render thread/WARN] [net.minecraft.client.sounds.SoundEngine/]: Missing sound for event: minecraft:item.goat_horn.play
+[26Aug2026 22:43:58.153] [Render thread/WARN] [net.minecraft.client.sounds.SoundEngine/]: Missing sound for event: minecraft:entity.goat.screaming.horn_break
+[26Aug2026 22:43:58.348] [Render thread/INFO] [com.mojang.blaze3d.audio.Library/]: OpenAL initialized on device OpenAL Soft on Speakers / Headphones (Realtek Audio)
+[26Aug2026 22:43:58.348] [Render thread/INFO] [net.minecraft.client.sounds.SoundEngine/SOUNDS]: Sound engine started
+[26Aug2026 22:43:58.565] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 1024x512x4 minecraft:textures/atlas/blocks.png-atlas
+[26Aug2026 22:43:59.845] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 256x256x4 minecraft:textures/atlas/signs.png-atlas
+[26Aug2026 22:43:59.931] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 512x512x4 minecraft:textures/atlas/banner_patterns.png-atlas
+[26Aug2026 22:44:00.121] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 512x512x4 minecraft:textures/atlas/shield_patterns.png-atlas
+[26Aug2026 22:44:00.311] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 1024x1024x4 minecraft:textures/atlas/armor_trims.png-atlas
+[26Aug2026 22:44:03.175] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 256x256x4 minecraft:textures/atlas/chest.png-atlas
+[26Aug2026 22:44:03.275] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 128x64x4 minecraft:textures/atlas/decorated_pot.png-atlas
+[26Aug2026 22:44:03.466] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 512x256x4 minecraft:textures/atlas/beds.png-atlas
+[26Aug2026 22:44:03.618] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 512x256x4 minecraft:textures/atlas/shulker_boxes.png-atlas
+[26Aug2026 22:44:04.920] [Render thread/WARN] [net.minecraft.client.renderer.ShaderInstance/]: Shader rendertype_entity_translucent_emissive could not find sampler named Sampler2 in the specified shader program.
+[26Aug2026 22:44:05.915] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 256x256x0 minecraft:textures/atlas/particles.png-atlas
+[26Aug2026 22:44:06.193] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 256x256x0 minecraft:textures/atlas/paintings.png-atlas
+[26Aug2026 22:44:06.247] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 128x128x0 minecraft:textures/atlas/mob_effects.png-atlas
+[26Aug2026 22:44:13.859] [Realms Notification Availability checker #1/INFO] [com.mojang.realmsclient.client.RealmsClient/]: Could not authorize you against Realms server: java.lang.RuntimeException: Failed to parse into SignedJWT: 0
+[26Aug2026 22:45:07.873] [Render thread/INFO] [net.minecraft.client.Minecraft/]: Stopping!
