@@ -1,0 +1,35 @@
+modLoader = "javafml"
+loaderVersion = "[47,)"
+#issueTrackerURL = ""
+license = "Insert License Here"
+
+[[mods]]
+modId = "arsenic"
+version = "${version}"
+displayName = "Arsenic"
+authors = "TheLightlybyt"
+description = '''
+Arsenic is a very powerful performance mod which rewrites most of the games faulty and unoptimised code for cleaner more faster code
+'''
+#logoFile = ""
+
+[[dependencies.arsenic]]
+modId = "forge"
+mandatory = true
+versionRange = "[47,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.arsenic]]
+modId = "minecraft"
+mandatory = true
+versionRange = "[1.20.1,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.arsenic]]
+modId = "architectury"
+mandatory = true
+versionRange = "[9.2.14,)"
+ordering = "AFTER"
+side = "BOTH"
