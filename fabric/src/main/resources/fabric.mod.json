@@ -8,8 +8,9 @@
     "TheLightlybyt"
   ],
   "contact": {
-    "homepage": "https://fabricmc.net/",
-    "sources": "https://github.com/FabricMC/fabric-example-mod"
+    "homepage": "https://github.com/lightlybyte/arsenic",
+    "sources": "https://github.com/lightlybyte/arsenic",
+    "issues": "https://github.com/lightlybyte/arsenic/issues"
   },
   "license": "MIT",
   "icon": "icon/icon.png",
@@ -33,6 +34,6 @@
     "fabric-api": "*"
   },
   "suggests": {
-    "another-mod": "*"
+    "sodium": "*"
   }
 }

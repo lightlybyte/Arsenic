@@ -1,26 +1,30 @@
 package com.lightlybyte.fabric.client;
 
+import com.lightlybyte.arsenic.Arsenic;
 import com.lightlybyte.arsenic.RenderManager;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.Environment;
 import net.fabricmc.api.EnvType;
 
-/**
- * Fabric client-only entry point.
- * This is separate from the main entry point to allow client-specific initialization.
- */
 @Environment(EnvType.CLIENT)
 public class ArsenicFabricClient implements ClientModInitializer {
     
+    private static boolean initialized = false;
+    
     @Override
     public void onInitializeClient() {
-        // Client-specific initialization
-        // RenderManager is already initialized via Arsenic.init() in the main entry
+        if (initialized) return;
         
-        // Ensure RenderManager is accessible
+        Arsenic.getLogger().info("Fabric client-specific initialization...");
+        
+        // Ensure RenderManager is initialized
         RenderManager.getInstance();
         
-        // Log client initialization
-        com.lightlybyte.arsenic.Arsenic.getLogger().info("Fabric client-specific initialization complete!");
+        initialized = true;
+        Arsenic.getLogger().info("Fabric client-specific initialization complete!");
+    }
+    
+    public static boolean isInitialized() {
+        return initialized;
     }
 }

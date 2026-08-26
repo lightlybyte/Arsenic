@@ -1,0 +1,5 @@
+accessWidener v2 named
+
+# Allow access to chunk fields for our mixins
+accessible class net/minecraft/world/level/chunk/LevelChunk
+accessible class net/minecraft/world/level/ChunkPos
