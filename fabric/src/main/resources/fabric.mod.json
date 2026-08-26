@@ -19,7 +19,7 @@
       "com.lightlybyte.fabric.ArsenicFabric"
     ],
     "client": [
-      "com.lightlybyte.fabric.client.ArsenicClient"
+      "com.lightlybyte.fabric.client.ArsenicFabricClient"
     ]
   },
   "mixins": [
