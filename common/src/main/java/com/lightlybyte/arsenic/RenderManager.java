@@ -1,12 +1,10 @@
 package com.lightlybyte.arsenic;
 
 import com.lightlybyte.arsenic.culling.FrustumCuller;
-import com.lightlybyte.arsenic.culling.CullingTask;
 import com.lightlybyte.arsenic.threading.ThreadManager;
 import org.joml.Matrix4f;
 
-import java.util.*;
-import java.util.concurrent.CompletableFuture;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -16,7 +14,6 @@ import java.util.concurrent.ConcurrentHashMap;
 public class RenderManager {
     private static final RenderManager INSTANCE = new RenderManager();
     
-    private final FrustumCuller culler = new FrustumCuller();
     private final Set<Integer> visibleChunks = ConcurrentHashMap.newKeySet();
     
     private boolean isInitialized = false;
@@ -24,52 +21,45 @@ public class RenderManager {
     private long lastRenderTime = 0;
     private int renderedChunkCount = 0;
     
-    // Cache for chunk bounds to avoid recomputing every frame
-    private final Map<Integer, CullingTask.ChunkBounds> chunkBoundsCache = new ConcurrentHashMap<>();
-    
     private RenderManager() {}
     
     public static RenderManager getInstance() {
         return INSTANCE;
     }
     
-    /**
-     * Called when the game starts.
-     * Initializes the render manager.
-     */
     public void initialize() {
         if (isInitialized) return;
         
-        System.out.println("[Arsenic] Initializing RenderManager...");
+        Arsenic.getLogger().info("Initializing RenderManager...");
         
-        // Start the render loop monitoring
+        // Initialize chunk manager
+        ChunkManager.getInstance().initialize();
+        
+        // Start stats logging
         ThreadManager.getInstance().scheduleAtFixedRate(
-            this::logRenderStats,
+            this::logStats,
             5, 5, java.util.concurrent.TimeUnit.SECONDS
         );
         
         isInitialized = true;
-        System.out.println("[Arsenic] RenderManager initialized!");
+        Arsenic.getLogger().info("RenderManager initialized!");
     }
     
     /**
      * Called every frame before rendering.
-     * Updates the frustum and performs culling.
      */
     public void preRender(Matrix4f projectionMatrix, Matrix4f viewMatrix) {
-        if (!useArsenicRendering) return;
+        if (!useArsenicRendering || !isInitialized) return;
         
         long startTime = System.nanoTime();
+        
+        // Get the culler from chunk manager
+        FrustumCuller culler = ChunkManager.getInstance().getCuller();
         
         // Update frustum
         culler.updateFrustum(projectionMatrix, viewMatrix);
         
-        // If chunk list changed, rebuild
-        if (culler.needsRebuild()) {
-            rebuildChunkList();
-        }
-        
-        // Perform async culling
+        // Perform culling
         culler.cullAsync().thenAccept(visible -> {
             visibleChunks.clear();
             visibleChunks.addAll(visible);
@@ -80,71 +70,38 @@ public class RenderManager {
     }
     
     /**
-     * Called after rendering to clean up.
+     * Called after rendering.
      */
     public void postRender() {
         // Nothing needed yet
     }
     
     /**
-     * Rebuilds the chunk list from the current world.
-     * This should be called when chunks load/unload.
-     */
-    public void rebuildChunkList() {
-        // This will be called from the mixin when chunks change
-        // The actual chunk data will be provided by the game
-        System.out.println("[Arsenic] Rebuilding chunk list...");
-        culler.rebuildChunkList(new ArrayList<>(chunkBoundsCache.values()));
-    }
-    
-    /**
-     * Adds a chunk to the culler.
-     * Called from the mixin when a chunk is loaded.
-     */
-    public void addChunk(int chunkX, int chunkZ, int index, float minY, float maxY) {
-        CullingTask.ChunkBounds bounds = FrustumCuller.createChunkBounds(
-            chunkX, chunkZ, index, minY, maxY
-        );
-        chunkBoundsCache.put(index, bounds);
-        culler.markDirty();
-    }
-    
-    /**
-     * Removes a chunk from the culler.
-     * Called from the mixin when a chunk is unloaded.
-     */
-    public void removeChunk(int index) {
-        chunkBoundsCache.remove(index);
-        culler.markDirty();
-    }
-    
-    /**
      * Checks if a chunk is visible.
-     * Used by the renderer to decide whether to render a chunk.
      */
-    public boolean isChunkVisible(int chunkIndex) {
-        return visibleChunks.contains(chunkIndex);
+    public boolean isChunkVisible(int index) {
+        return visibleChunks.contains(index);
     }
     
     /**
-     * Gets the current set of visible chunk indices.
+     * Gets visible chunks set.
      */
     public Set<Integer> getVisibleChunks() {
-        return new HashSet<>(visibleChunks);
+        return visibleChunks;
     }
     
-    // ==================== STATS & DIAGNOSTICS ====================
+    // ==================== STATS ====================
     
-    private void logRenderStats() {
-        System.out.println("[Arsenic] Render Stats:");
-        System.out.println("  - Total chunks: " + culler.getTotalChunkCount());
-        System.out.println("  - Visible chunks: " + culler.getLastCulledCount());
-        System.out.println("  - Cull time: " + culler.getLastCullingTimeMs() + "ms");
-        System.out.println("  - Render time: " + (lastRenderTime / 1_000_000) + "ms");
-    }
-    
-    public FrustumCuller getCuller() {
-        return culler;
+    private void logStats() {
+        if (!isInitialized) return;
+        
+        FrustumCuller culler = ChunkManager.getInstance().getCuller();
+        Arsenic.getLogger().info("Render Stats:");
+        Arsenic.getLogger().info("  - Total chunks: " + culler.getTotalChunkCount());
+        Arsenic.getLogger().info("  - Visible chunks: " + culler.getLastCulledCount());
+        Arsenic.getLogger().info("  - Cull time: " + culler.getLastCullingTimeMs() + "ms");
+        Arsenic.getLogger().info("  - Visibility ratio: " + 
+            String.format("%.1f%%", culler.getVisibilityRatio() * 100));
     }
     
     public boolean isArsenicRenderingEnabled() {
@@ -153,7 +110,7 @@ public class RenderManager {
     
     public void setArsenicRenderingEnabled(boolean enabled) {
         this.useArsenicRendering = enabled;
-        System.out.println("[Arsenic] Rendering " + (enabled ? "enabled" : "disabled"));
+        Arsenic.getLogger().info("Rendering " + (enabled ? "enabled" : "disabled"));
     }
     
     public int getRenderedChunkCount() {
