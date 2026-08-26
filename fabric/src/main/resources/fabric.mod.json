@@ -16,10 +16,10 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "com.lightlybyte.fabric.ExampleModFabric"
+      "com.lightlybyte.fabric.ArsenicFabric"
     ],
     "client": [
-      "com.lightlybyte.fabric.client.ExampleModFabricClient"
+      "com.lightlybyte.fabric.client.ArsenicClient"
     ]
   },
   "mixins": [
