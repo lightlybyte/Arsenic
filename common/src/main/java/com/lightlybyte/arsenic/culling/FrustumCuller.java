@@ -61,7 +61,7 @@ public class FrustumCuller {
     
     public CompletableFuture<Set<Integer>> cullAsync() {
         if (allChunks.isEmpty()) {
-            return CompletableFuture.completedFuture(new HashSet<>());
+            return CompletableFuture.completedFuture(Collections.emptySet());
         }
         
         if (isCullingInProgress) {
@@ -93,7 +93,6 @@ public class FrustumCuller {
         ThreadManager tm = ThreadManager.getInstance();
         
         for (CullingTask task : tasks) {
-            // Wrap the task in a Runnable since submitPriority expects Runnable
             Runnable wrappedTask = () -> {
                 try {
                     CullingTask.Result result = task.call();
@@ -129,7 +128,8 @@ public class FrustumCuller {
                 System.err.println("[Arsenic] Culling failed: " + throwable.getMessage());
                 throwable.printStackTrace();
                 isCullingInProgress = false;
-                return new HashSet<>();
+                // Return a new HashSet (which is a Set) instead of Collections.emptySet()
+                return new HashSet<Integer>();
             });
     }
     
@@ -143,7 +143,7 @@ public class FrustumCuller {
     
     public Set<Integer> cullSync() {
         if (allChunks.isEmpty()) {
-            return new HashSet<>();
+            return Collections.emptySet();
         }
         
         long startTime = System.nanoTime();

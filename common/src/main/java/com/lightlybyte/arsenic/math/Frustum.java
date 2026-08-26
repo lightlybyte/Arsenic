@@ -89,11 +89,12 @@ public class Frustum {
             plane.z() * plane.z()
         );
         if (length > 0) {
-            // JOML Vector4f uses setX(), setY(), setZ(), setW() - NOT x(), y(), z(), w()
-            plane.setX(plane.x() / length);
-            plane.setY(plane.y() / length);
-            plane.setZ(plane.z() / length);
-            plane.setW(plane.w() / length);
+            // JOML Vector4f uses .x, .y, .z, .w as direct fields
+            // So we just assign directly
+            plane.x = plane.x() / length;
+            plane.y = plane.y() / length;
+            plane.z = plane.z() / length;
+            plane.w = plane.w() / length;
         }
     }
     
