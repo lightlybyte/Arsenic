@@ -1,7 +1,6 @@
 package com.lightlybyte.arsenic.math;
 
 import org.joml.Matrix4f;
-import org.joml.Vector3f;
 import org.joml.Vector4f;
 
 /**
@@ -90,29 +89,24 @@ public class Frustum {
             plane.z() * plane.z()
         );
         if (length > 0) {
-            plane.x(plane.x() / length);
-            plane.y(plane.y() / length);
-            plane.z(plane.z() / length);
-            plane.w(plane.w() / length);
+            // JOML Vector4f uses setX(), setY(), setZ(), setW() - NOT x(), y(), z(), w()
+            plane.setX(plane.x() / length);
+            plane.setY(plane.y() / length);
+            plane.setZ(plane.z() / length);
+            plane.setW(plane.w() / length);
         }
     }
     
     /**
      * Tests if an AABB (axis-aligned bounding box) is inside the frustum.
-     * @param minX, minY, minZ - minimum corner of the bounding box
-     * @param maxX, maxY, maxZ - maximum corner of the bounding box
-     * @return true if the box is visible (or partially visible)
      */
     public boolean isBoxVisible(float minX, float minY, float minZ, 
                                  float maxX, float maxY, float maxZ) {
-        // Test each plane
         for (Vector4f plane : planes) {
-            // Find the point of the box that is closest to the plane's negative normal
             float pX = plane.x() >= 0 ? maxX : minX;
             float pY = plane.y() >= 0 ? maxY : minY;
             float pZ = plane.z() >= 0 ? maxZ : minZ;
             
-            // If the closest point is outside the plane, the box is outside the frustum
             float distance = plane.x() * pX + plane.y() * pY + plane.z() * pZ + plane.w();
             if (distance < 0) {
                 return false;
@@ -122,7 +116,7 @@ public class Frustum {
     }
     
     /**
-     * Tests if a sphere (defined by center and radius) is inside the frustum.
+     * Tests if a sphere is inside the frustum.
      */
     public boolean isSphereVisible(float centerX, float centerY, float centerZ, float radius) {
         for (Vector4f plane : planes) {
