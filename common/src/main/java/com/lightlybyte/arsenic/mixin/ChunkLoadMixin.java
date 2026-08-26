@@ -2,40 +2,41 @@ package com.lightlybyte.arsenic.mixin;
 
 import com.lightlybyte.arsenic.ChunkManager;
 import com.lightlybyte.arsenic.Arsenic;
-import net.minecraft.client.world.ClientWorld;
 import net.minecraft.world.chunk.WorldChunk;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(ClientWorld.class)
-public class ClientWorldMixin {
+@Mixin(WorldChunk.class)
+public class ChunkLoadMixin {
     
     private static boolean warned = false;
     
     @Inject(
-        method = "loadChunk",
+        method = "load",
         at = @At("RETURN")
     )
-    private void onLoadChunk(int x, int z, WorldChunk chunk, CallbackInfo ci) {
+    private void onChunkLoaded(CallbackInfo ci) {
         try {
+            WorldChunk chunk = (WorldChunk) (Object) this;
             ChunkManager.getInstance().onChunkLoaded(chunk);
         } catch (Exception e) {
             if (!warned) {
-                Arsenic.getLogger().warn("Arsenic client chunk load hook failed: " + e.getMessage());
+                Arsenic.getLogger().warn("Arsenic chunk load hook failed: " + e.getMessage());
                 warned = true;
             }
         }
     }
     
     @Inject(
-        method = "unloadChunk",
+        method = "unload",
         at = @At("HEAD")
     )
-    private void onUnloadChunk(int x, int z, CallbackInfo ci) {
+    private void onChunkUnloaded(CallbackInfo ci) {
         try {
-            ChunkManager.getInstance().getCuller().markDirty();
+            WorldChunk chunk = (WorldChunk) (Object) this;
+            ChunkManager.getInstance().onChunkUnloaded(chunk);
         } catch (Exception e) {
             // Silently fail
         }

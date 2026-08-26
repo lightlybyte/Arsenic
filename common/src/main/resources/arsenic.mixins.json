@@ -3,11 +3,13 @@
   "package": "com.lightlybyte.mixin",
   "compatibilityLevel": "JAVA_17",
   "minVersion": "0.8",
-  "client": [
-    "ClientWorldMixin"
-  ],
   "mixins": [
-    "ChunkMixin"
+    "ChunkLoadMixin"
+  ],
+  "client": [
+    "WorldRendererMixin",
+    "ChunkRendererMixin",
+    "ClientWorldMixin"
   ],
   "injectors": {
     "defaultRequire": 1
