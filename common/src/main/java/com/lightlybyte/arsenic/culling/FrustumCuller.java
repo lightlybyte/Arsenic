@@ -13,12 +13,16 @@ import java.util.concurrent.atomic.AtomicLong;
 /**
  * Main frustum culling manager.
  * Distributes culling work across multiple threads using Arsenic's ThreadManager.
+ * 
+ * Frustum culling is the process of determining which chunks are visible to the
+ * player's camera and should be rendered, and which are not.
  */
 public class FrustumCuller {
     private final Frustum frustum = new Frustum();
     private final List<CullingTask.ChunkBounds> allChunks = new ArrayList<>();
     private final Set<Integer> visibleChunks = ConcurrentHashMap.newKeySet();
     
+    // Metrics
     private final AtomicLong totalCullingTimeNanos = new AtomicLong(0);
     private final AtomicLong totalCullingCalls = new AtomicLong(0);
     private final AtomicLong totalChunksProcessed = new AtomicLong(0);
@@ -32,6 +36,10 @@ public class FrustumCuller {
     private volatile boolean needsRebuild = true;
     private volatile int cachedTotalChunks = 0;
     
+    /**
+     * Updates the frustum from the current camera matrices.
+     * Should be called once per frame before culling.
+     */
     public void updateFrustum(Matrix4f projection, Matrix4f view) {
         frustum.update(projection, view);
         lastUpdateTime = System.nanoTime();
@@ -41,6 +49,9 @@ public class FrustumCuller {
         return frustum;
     }
     
+    /**
+     * Rebuilds the internal chunk list from the current world state.
+     */
     public void rebuildChunkList(List<CullingTask.ChunkBounds> chunks) {
         synchronized (allChunks) {
             allChunks.clear();
@@ -59,11 +70,17 @@ public class FrustumCuller {
         return needsRebuild;
     }
     
+    /**
+     * Performs multithreaded frustum culling on all registered chunks.
+     * Uses HIGH priority tasks to ensure culling happens before rendering.
+     */
     public CompletableFuture<Set<Integer>> cullAsync() {
+        // If no chunks, return empty set
         if (allChunks.isEmpty()) {
             return CompletableFuture.completedFuture(Collections.emptySet());
         }
         
+        // If culling is already in progress, return current visible set
         if (isCullingInProgress) {
             return CompletableFuture.completedFuture(new HashSet<>(visibleChunks));
         }
@@ -111,36 +128,63 @@ public class FrustumCuller {
             futures.add(future);
         }
         
-        return CompletableFuture.allOf(futures.toArray(new CompletableFuture[0]))
-            .thenApply(v -> {
-                long endTime = System.nanoTime();
-                long durationNanos = endTime - startTime;
-                totalCullingTimeNanos.addAndGet(durationNanos);
-                totalCullingCalls.incrementAndGet();
-                
-                lastCulledCount = visibleChunks.size();
-                lastCullingTimeMs = durationNanos / 1_000_000;
-                isCullingInProgress = false;
-                
-                return new HashSet<>(visibleChunks);
-            })
-            .exceptionally(throwable -> {
+        // Wait for all tasks to complete
+        CompletableFuture<Void> allDone = CompletableFuture.allOf(futures.toArray(new CompletableFuture[0]));
+        
+        // Return a future that completes with the visible chunks
+        CompletableFuture<Set<Integer>> resultFuture = allDone.thenApply(v -> {
+            long endTime = System.nanoTime();
+            long durationNanos = endTime - startTime;
+            totalCullingTimeNanos.addAndGet(durationNanos);
+            totalCullingCalls.incrementAndGet();
+            
+            lastCulledCount = visibleChunks.size();
+            lastCullingTimeMs = durationNanos / 1_000_000;
+            isCullingInProgress = false;
+            
+            return new HashSet<>(visibleChunks);
+        });
+        
+        // Handle errors
+        return resultFuture.handle((result, throwable) -> {
+            if (throwable != null) {
                 System.err.println("[Arsenic] Culling failed: " + throwable.getMessage());
                 throwable.printStackTrace();
                 isCullingInProgress = false;
-                // Return a new HashSet (which is a Set) instead of Collections.emptySet()
                 return new HashSet<Integer>();
-            });
+            }
+            return result;
+        });
     }
     
+    /**
+     * Performs culling with a timeout.
+     */
     public CompletableFuture<Set<Integer>> cullAsyncWithTimeout(long timeout, TimeUnit unit) {
-        return cullAsync().completeOnTimeout(
-            new HashSet<>(visibleChunks),
-            timeout,
-            unit
-        );
+        CompletableFuture<Set<Integer>> future = cullAsync();
+        try {
+            return future.completeOnTimeout(
+                new HashSet<>(visibleChunks),
+                timeout,
+                unit
+            );
+        } catch (Exception e) {
+            // completeOnTimeout might not be available in older Java versions
+            // Fallback: use a timer
+            CompletableFuture<Set<Integer>> timeoutFuture = new CompletableFuture<>();
+            ThreadManager.getInstance().schedule(() -> {
+                if (!future.isDone()) {
+                    timeoutFuture.complete(new HashSet<>(visibleChunks));
+                }
+            }, timeout, unit);
+            
+            return future.applyToEither(timeoutFuture, result -> result);
+        }
     }
     
+    /**
+     * Synchronous version for debugging.
+     */
     public Set<Integer> cullSync() {
         if (allChunks.isEmpty()) {
             return Collections.emptySet();
@@ -166,18 +210,29 @@ public class FrustumCuller {
         return new HashSet<>(visibleChunks);
     }
     
+    /**
+     * Tests a single chunk against the frustum.
+     */
     public boolean isChunkVisible(CullingTask.ChunkBounds chunk) {
         return frustum.isBoxVisible(chunk.minX, chunk.minY, chunk.minZ,
                                     chunk.maxX, chunk.maxY, chunk.maxZ);
     }
     
+    /**
+     * Gets the current set of visible chunks.
+     */
     public Set<Integer> getVisibleChunks() {
         return new HashSet<>(visibleChunks);
     }
     
+    /**
+     * Checks if a chunk index is visible.
+     */
     public boolean isChunkVisible(int index) {
         return visibleChunks.contains(index);
     }
+    
+    // ==================== METRICS ====================
     
     public int getLastCulledCount() {
         return lastCulledCount;
@@ -227,6 +282,8 @@ public class FrustumCuller {
         lastCullingTimeMs = 0;
         lastCulledCount = 0;
     }
+    
+    // ==================== UTILITY ====================
     
     public static CullingTask.ChunkBounds createChunkBounds(int chunkX, int chunkZ, int index) {
         float minX = chunkX * 16;
