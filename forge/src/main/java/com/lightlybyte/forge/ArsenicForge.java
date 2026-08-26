@@ -2,15 +2,11 @@ package com.lightlybyte.forge;
 
 import com.lightlybyte.arsenic.Arsenic;
 import com.lightlybyte.arsenic.threading.ThreadManager;
-import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.server.ServerStoppedEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.DistExecutor;
-import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -31,9 +27,10 @@ public class ArsenicForge {
     public ArsenicForge() {
         Arsenic.printBanner();
         
-        // Register setup events
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::onCommonSetup);
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::onClientSetup);
+        // Register setup events using the modern method
+        var modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+        modEventBus.addListener(this::onCommonSetup);
+        modEventBus.addListener(this::onClientSetup);
         
         // Register Forge event bus for server lifecycle events
         MinecraftForge.EVENT_BUS.register(this);

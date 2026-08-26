@@ -6,7 +6,6 @@ import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
-import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStopping;
 
 /**
  * Fabric entry point for Arsenic.
@@ -58,7 +57,8 @@ public class ArsenicFabric implements ModInitializer, ClientModInitializer {
      */
     private void registerServerEvents() {
         // Shutdown hook - clean up when server stops
-        ServerStopping.EVENT.register((server) -> {
+        // Use SERVER_STOPPING instead of ServerStopping.EVENT
+        ServerLifecycleEvents.SERVER_STOPPING.register((server) -> {
             Arsenic.getLogger().info("Server stopping, shutting down Arsenic...");
             ThreadManager.getInstance().shutdown();
         });
