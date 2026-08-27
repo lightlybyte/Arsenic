@@ -1,18 +1,18 @@
 {
-    "required": true,
-    "minVersion": "0.8",
-    "package": "com.lightlybyte.forge.mixin",
-    "compatibilityLevel": "JAVA_17",
-    "mixins": [
-      "ChunkLoadMixin"
-    ],
-    "client": [
-      "WorldRendererMixin",
-      "ChunkRendererMixin"
-    ],
-    "server": [],
-    "injectors": {
-      "defaultRequire": 1
-    },
-    "refmap": "arsenic-refmap.json"
-  }
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.lightlybyte.forge.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "ChunkLoadMixin",
+    "ChunkRenderMixin"
+  ],
+  "client": [
+    "WorldRendererMixin"
+  ],
+  "server": [],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "refmap": "arsenic-refmap.json"
+}

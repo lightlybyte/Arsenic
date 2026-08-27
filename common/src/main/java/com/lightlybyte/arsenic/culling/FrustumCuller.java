@@ -12,20 +12,7 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicLong;
-import java.util.concurrent.atomic.AtomicInteger;
 
-/**
- * Advanced frustum culler with multithreading, hierarchical culling,
- * and full integration with Arsenic's math library.
- * 
- * Features:
- * - Multithreaded chunk culling with adaptive task splitting
- * - Hierarchical culling (parent before children)
- * - LOD-based culling
- * - Shadow cascade awareness
- * - Comprehensive metrics and diagnostics
- * - Timeout support for graceful degradation
- */
 public class FrustumCuller {
     private final Frustum frustum = new Frustum();
     private final Map<Integer, ChunkBounds> allChunks = new ConcurrentHashMap<>();
@@ -34,7 +21,6 @@ public class FrustumCuller {
     private final Map<Integer, Long> chunkLastVisible = new ConcurrentHashMap<>();
     private final Map<Integer, Float> chunkVisibilityScore = new ConcurrentHashMap<>();
     
-    // Culling configuration
     private volatile boolean useHierarchicalCulling = true;
     private volatile boolean useLODCulling = true;
     private volatile int maxLOD = 4;
@@ -42,7 +28,6 @@ public class FrustumCuller {
     private volatile int viewDistance = 8;
     private volatile float farPlaneDistance = 100.0f;
     
-    // Metrics
     private final AtomicLong totalCullingTimeNanos = new AtomicLong(0);
     private final AtomicLong totalCullingCalls = new AtomicLong(0);
     private final AtomicLong totalChunksProcessed = new AtomicLong(0);
@@ -56,7 +41,7 @@ public class FrustumCuller {
     private volatile boolean isCullingInProgress = false;
     private volatile long lastUpdateTime = 0;
     private volatile float lastVisibilityRatio = 0.0f;
-    private volatile int lastLODDistribution[] = new int[5];
+    private volatile int[] lastLODDistribution = new int[5];
     
     private volatile boolean needsRebuild = true;
     private volatile int cachedTotalChunks = 0;
@@ -65,22 +50,12 @@ public class FrustumCuller {
     private static final int MIN_CHUNKS_PER_TASK = 16;
     private static final int MAX_CHUNKS_PER_TASK = 256;
     
-    // ==================== PUBLIC API ====================
-    
-    /**
-     * Updates the frustum from the current camera matrices.
-     */
     public void updateFrustum(Matrix4f projection, Matrix4f view) {
         frustum.update(projection, view);
         lastUpdateTime = System.nanoTime();
-        
-        // Update far plane from frustum
         this.farPlaneDistance = frustum.getFar();
     }
     
-    /**
-     * Updates the frustum from a clip matrix directly.
-     */
     public void updateFrustumFromClip(Matrix4f clip) {
         frustum.updateFromClip(clip);
         lastUpdateTime = System.nanoTime();
@@ -90,9 +65,6 @@ public class FrustumCuller {
         return frustum;
     }
     
-    /**
-     * Rebuilds the internal chunk list from the current world state.
-     */
     public void rebuildChunkList(List<CullingTask.ChunkBounds> chunks) {
         allChunks.clear();
         chunkLODs.clear();
@@ -109,7 +81,6 @@ public class FrustumCuller {
         cachedTotalChunks = allChunks.size();
         needsRebuild = false;
         
-        // Build hierarchy for hierarchical culling
         if (useHierarchicalCulling) {
             buildHierarchy();
         }
@@ -117,9 +88,6 @@ public class FrustumCuller {
         System.out.println("[Arsenic] Rebuilt chunk list: " + cachedTotalChunks + " chunks");
     }
     
-    /**
-     * Adds or updates a single chunk.
-     */
     public void addChunk(CullingTask.ChunkBounds chunk) {
         allChunks.put(chunk.index, new ChunkBounds(chunk));
         chunkLODs.put(chunk.index, 0);
@@ -128,9 +96,6 @@ public class FrustumCuller {
         needsRebuild = true;
     }
     
-    /**
-     * Removes a chunk from the culler.
-     */
     public void removeChunk(int index) {
         allChunks.remove(index);
         chunkLODs.remove(index);
@@ -149,13 +114,6 @@ public class FrustumCuller {
         return needsRebuild;
     }
     
-    // ==================== CULLING ====================
-    
-    /**
-     * Performs multithreaded frustum culling on all registered chunks.
-     * Uses hierarchical culling when enabled.
-     */
-    @SuppressWarnings("unchecked")
     public CompletableFuture<Set<Integer>> cullAsync() {
         if (allChunks.isEmpty()) {
             return CompletableFuture.completedFuture(Collections.emptySet());
@@ -165,7 +123,6 @@ public class FrustumCuller {
             return CompletableFuture.completedFuture(new HashSet<>(visibleChunks));
         }
         
-        // Rebuild if needed
         if (needsRebuild) {
             rebuildChunkList(new ArrayList<>(allChunks.values()).stream()
                 .map(cb -> cb.toCullingTaskBounds())
@@ -178,7 +135,6 @@ public class FrustumCuller {
         visibleChunks.clear();
         visibleChunks.addAll(performCulling());
         
-        // Update metrics
         long endTime = System.nanoTime();
         long durationNanos = endTime - startTime;
         totalCullingTimeNanos.addAndGet(durationNanos);
@@ -190,13 +146,9 @@ public class FrustumCuller {
         updateLODStats();
         isCullingInProgress = false;
         
-        // Return a copy
         return CompletableFuture.completedFuture(new HashSet<>(visibleChunks));
     }
     
-    /**
-     * Performs the actual culling work.
-     */
     private Set<Integer> performCulling() {
         if (allChunks.isEmpty()) {
             return Collections.emptySet();
@@ -204,16 +156,9 @@ public class FrustumCuller {
         
         List<ChunkBounds> chunks = new ArrayList<>(allChunks.values());
         int chunkCount = chunks.size();
-        
-        // Determine optimal task splitting
-        int chunkSize = MathHelper.clamp(
-            chunkCount / (THREADS * 2),
-            MIN_CHUNKS_PER_TASK,
-            MAX_CHUNKS_PER_TASK
-        );
+        int chunkSize = MathHelper.clamp(chunkCount / (THREADS * 2), MIN_CHUNKS_PER_TASK, MAX_CHUNKS_PER_TASK);
         int taskCount = (chunkCount + chunkSize - 1) / chunkSize;
         
-        // Create and submit tasks
         List<CullingTask> tasks = new ArrayList<>();
         for (int i = 0; i < chunkCount; i += chunkSize) {
             int end = Math.min(i + chunkSize, chunkCount);
@@ -224,7 +169,6 @@ public class FrustumCuller {
             tasks.add(new CullingTask(frustum, batch, tasks.size()));
         }
         
-        // Execute tasks in parallel
         List<CullingTask.Result> results = new ArrayList<>();
         for (CullingTask task : tasks) {
             try {
@@ -234,7 +178,6 @@ public class FrustumCuller {
             }
         }
         
-        // Merge results
         Set<Integer> visible = new HashSet<>();
         for (CullingTask.Result result : results) {
             visible.addAll(result.visibleChunkIndices);
@@ -244,18 +187,15 @@ public class FrustumCuller {
         
         totalChunksCulled.addAndGet(chunkCount - visible.size());
         
-        // Apply LOD culling if enabled
         if (useLODCulling) {
             visible = applyLODCulling(visible);
         }
         
-        // Update chunk last visible times
         long now = System.currentTimeMillis();
         for (int index : visible) {
             chunkLastVisible.put(index, now);
         }
         
-        // Update visibility scores (exponential moving average)
         for (ChunkBounds chunk : chunks) {
             float score = chunkVisibilityScore.getOrDefault(chunk.index, 1.0f);
             boolean isVisible = visible.contains(chunk.index);
@@ -267,28 +207,20 @@ public class FrustumCuller {
         return visible;
     }
     
-    /**
-     * Applies LOD-based culling to visible chunks.
-     */
     private Set<Integer> applyLODCulling(Set<Integer> visible) {
         Set<Integer> result = new HashSet<>();
-        float[] camPos = new float[]{0, 0, 0}; // This would come from the actual camera
+        float[] camPos = new float[]{0, 0, 0};
         
         for (int index : visible) {
             ChunkBounds chunk = allChunks.get(index);
             if (chunk == null) continue;
             
-            // Calculate distance from camera
-            float dist = MathHelper.distance(
-                camPos[0], camPos[1], camPos[2],
-                chunk.centerX, chunk.centerY, chunk.centerZ
-            );
+            float dist = MathHelper.distance(camPos[0], camPos[1], camPos[2],
+                chunk.centerX, chunk.centerY, chunk.centerZ);
             
-            // Calculate LOD
             int lod = frustum.getLOD(chunk.centerX, chunk.centerY, chunk.centerZ, maxLOD);
             chunkLODs.put(index, lod);
             
-            // Cull based on LOD and distance
             float maxDist = farPlaneDistance / (1 + lod * 0.5f);
             if (dist < maxDist) {
                 result.add(index);
@@ -300,11 +232,7 @@ public class FrustumCuller {
         return result;
     }
     
-    /**
-     * Builds hierarchy for hierarchical culling.
-     */
     private void buildHierarchy() {
-        // Group chunks into parent nodes (8x8 chunks)
         Map<Long, List<Integer>> parentMap = new HashMap<>();
         
         for (ChunkBounds chunk : allChunks.values()) {
@@ -314,12 +242,8 @@ public class FrustumCuller {
             parentMap.computeIfAbsent(key, k -> new ArrayList<>()).add(chunk.index);
         }
         
-        // Store parent bounds for each chunk
         for (Map.Entry<Long, List<Integer>> entry : parentMap.entrySet()) {
-            long key = entry.getKey();
             List<Integer> childIndices = entry.getValue();
-            
-            // Calculate parent bounds
             float minX = Float.MAX_VALUE, minY = Float.MAX_VALUE, minZ = Float.MAX_VALUE;
             float maxX = Float.MIN_VALUE, maxY = Float.MIN_VALUE, maxZ = Float.MIN_VALUE;
             
@@ -334,7 +258,6 @@ public class FrustumCuller {
                 maxZ = Math.max(maxZ, child.maxZ);
             }
             
-            // Store parent bounds in each child
             for (int idx : childIndices) {
                 ChunkBounds child = allChunks.get(idx);
                 if (child != null) {
@@ -349,9 +272,6 @@ public class FrustumCuller {
         }
     }
     
-    /**
-     * Synchronous culling for debugging.
-     */
     public Set<Integer> cullSync() {
         if (allChunks.isEmpty()) {
             return Collections.emptySet();
@@ -361,7 +281,6 @@ public class FrustumCuller {
         visibleChunks.clear();
         
         for (ChunkBounds chunk : allChunks.values()) {
-            // Hierarchical check first
             if (useHierarchicalCulling) {
                 if (!frustum.isBoxVisible(
                     chunk.parentMinX, chunk.parentMinY, chunk.parentMinZ,
@@ -388,28 +307,22 @@ public class FrustumCuller {
         return new HashSet<>(visibleChunks);
     }
     
-    /**
-     * Checks if a specific chunk is visible.
-     */
+    public void forceUpdate() {
+        if (allChunks.isEmpty()) return;
+        cullSync();
+    }
+    
     public boolean isChunkVisible(int index) {
         return visibleChunks.contains(index);
     }
     
-    /**
-     * Gets the LOD for a specific chunk.
-     */
     public int getChunkLOD(int index) {
         return chunkLODs.getOrDefault(index, 0);
     }
     
-    /**
-     * Gets the visibility score for a chunk (0.0 to 1.0).
-     */
     public float getChunkVisibilityScore(int index) {
         return chunkVisibilityScore.getOrDefault(index, 1.0f);
     }
-    
-    // ==================== CONFIGURATION ====================
     
     public void setViewDistance(int distance) {
         this.viewDistance = distance;
@@ -431,8 +344,6 @@ public class FrustumCuller {
     public void setLODDistanceScale(float scale) {
         this.lodDistanceScale = scale;
     }
-    
-    // ==================== GETTERS ====================
     
     public Set<Integer> getVisibleChunks() {
         return new HashSet<>(visibleChunks);
@@ -461,8 +372,6 @@ public class FrustumCuller {
     public int[] getLODDistribution() {
         return lastLODDistribution.clone();
     }
-    
-    // ==================== STATISTICS ====================
     
     private void updateLODStats() {
         int[] distribution = new int[maxLOD + 1];
@@ -520,11 +429,6 @@ public class FrustumCuller {
         lastCulledCount = 0;
     }
     
-    // ==================== INNER CLASSES ====================
-    
-    /**
-     * Extended chunk bounds with parent information for hierarchical culling.
-     */
     public static class ChunkBounds {
         public final int index;
         public final int chunkX;
@@ -549,8 +453,6 @@ public class FrustumCuller {
             this.centerZ = (minZ + maxZ) * 0.5f;
             this.chunkX = (int) (minX / 16);
             this.chunkZ = (int) (minZ / 16);
-            
-            // Default parent bounds = self
             this.parentMinX = minX;
             this.parentMinY = minY;
             this.parentMinZ = minZ;
@@ -562,15 +464,7 @@ public class FrustumCuller {
         public CullingTask.ChunkBounds toCullingTaskBounds() {
             return new CullingTask.ChunkBounds(index, minX, minY, minZ, maxX, maxY, maxZ);
         }
-        
-        @Override
-        public String toString() {
-            return String.format("ChunkBounds{idx=%d, chunk=(%d,%d), center=(%.1f,%.1f,%.1f)}",
-                index, chunkX, chunkZ, centerX, centerY, centerZ);
-        }
     }
-    
-    // ==================== DIAGNOSTICS ====================
     
     public String getDiagnostics() {
         StringBuilder sb = new StringBuilder();

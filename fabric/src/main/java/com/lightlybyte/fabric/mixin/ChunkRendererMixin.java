@@ -10,8 +10,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(ChunkRenderDispatcher.class)
 public class ChunkRendererMixin {
-    @Inject(method = "renderChunk", at = @At("HEAD"), cancellable = true)
-    private void onRenderChunk(BlockPos pos, CallbackInfoReturnable<Boolean> cir) {
+    @Inject(method = "compile", at = @At("HEAD"), cancellable = true)
+    private void onCompileChunk(BlockPos pos, CallbackInfoReturnable<Boolean> cir) {
         try {
             int chunkX = pos.getX() >> 4;
             int chunkZ = pos.getZ() >> 4;

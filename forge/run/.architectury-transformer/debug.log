@@ -105,86 +105,117 @@
 [Architectury Transformer DEBUG]  - C:\Users\light\.gradle\caches\modules-2\files-2.1\io.netty\netty-transport-native-epoll\4.1.82.Final\c7350a71920f3ae9142945e25fed4846cce53374\netty-transport-native-epoll-4.1.82.Final-linux-x86_64.jar
 [Architectury Transformer DEBUG]  - C:\Users\light\.gradle\caches\modules-2\files-2.1\io.netty\netty-transport-native-epoll\4.1.82.Final\476409d6255001ca53a55f65b01c13822f8dc93a\netty-transport-native-epoll-4.1.82.Final-linux-aarch_64.jar
 [Architectury Transformer DEBUG]  - C:\Users\light\OneDrive\Desktop\Arsenic\.gradle\loom-cache\remapped_mods\remapped\dev\architectury\architectury-forge-393ec4c8\9.2.14\architectury-forge-393ec4c8-9.2.14.jar
-[Architectury Transformer] Read classpath in 2.053 s
+[Architectury Transformer] Read classpath in 4.878 s
 [Architectury Transformer DEBUG] Closed File Systems for C:\Users\light\OneDrive\Desktop\Arsenic\common\build\devlibs\arsenic-common-1.0.0-dev.jar
-[Architectury Transformer DEBUG] Transforming 8 transformer(s) from C:\Users\light\OneDrive\Desktop\Arsenic\common\build\devlibs\arsenic-common-1.0.0-dev.jar to C:\Users\light\AppData\Local\Temp\5680956723308652790.jar: 
-[Architectury Transformer DEBUG]  - dev.architectury.transformer.transformers.RuntimeMixinRefmapDetector@8b87145
-[Architectury Transformer DEBUG]  - dev.architectury.transformer.transformers.TransformExpectPlatform@6483f5ae
-[Architectury Transformer DEBUG]  - dev.architectury.transformer.transformers.RemapInjectables@b9afc07
-[Architectury Transformer DEBUG]  - dev.architectury.transformer.transformers.TransformPlatformOnly@382db087
-[Architectury Transformer DEBUG]  - dev.architectury.transformer.transformers.TransformForgeAnnotations@73d4cc9e
-[Architectury Transformer DEBUG]  - dev.architectury.transformer.transformers.TransformForgeEnvironment@80169cf
-[Architectury Transformer DEBUG]  - dev.architectury.transformer.transformers.GenerateFakeForgeMod@5427c60c
-[Architectury Transformer DEBUG]  - dev.architectury.transformer.transformers.FixForgeMixin@15bfd87
-[Architectury Transformer DEBUG] Transforming from C:\Users\light\OneDrive\Desktop\Arsenic\common\build\devlibs\arsenic-common-1.0.0-dev.jar to C:\Users\light\AppData\Local\Temp\5680956723308652790.jar with 8 transformer(s) on dev.architectury.transformer.handler.SimpleTransformerHandler
+[Architectury Transformer DEBUG] Transforming 8 transformer(s) from C:\Users\light\OneDrive\Desktop\Arsenic\common\build\devlibs\arsenic-common-1.0.0-dev.jar to C:\Users\light\AppData\Local\Temp\1083579498585432204.jar: 
+[Architectury Transformer DEBUG]  - dev.architectury.transformer.transformers.RuntimeMixinRefmapDetector@76b10754
+[Architectury Transformer DEBUG]  - dev.architectury.transformer.transformers.TransformExpectPlatform@2bea5ab4
+[Architectury Transformer DEBUG]  - dev.architectury.transformer.transformers.RemapInjectables@3d8314f0
+[Architectury Transformer DEBUG]  - dev.architectury.transformer.transformers.TransformPlatformOnly@2df32bf7
+[Architectury Transformer DEBUG]  - dev.architectury.transformer.transformers.TransformForgeAnnotations@530612ba
+[Architectury Transformer DEBUG]  - dev.architectury.transformer.transformers.TransformForgeEnvironment@2a40cd94
+[Architectury Transformer DEBUG]  - dev.architectury.transformer.transformers.GenerateFakeForgeMod@f4168b8
+[Architectury Transformer DEBUG]  - dev.architectury.transformer.transformers.FixForgeMixin@3bd94634
+[Architectury Transformer DEBUG] Transforming from C:\Users\light\OneDrive\Desktop\Arsenic\common\build\devlibs\arsenic-common-1.0.0-dev.jar to C:\Users\light\AppData\Local\Temp\1083579498585432204.jar with 8 transformer(s) on dev.architectury.transformer.handler.SimpleTransformerHandler
 [Architectury Transformer DEBUG] Remapping with 1 mapping provider(s):
-[Architectury Transformer DEBUG]  - dev.architectury.transformer.transformers.TransformForgeEnvironment$$Lambda/0x000001921b08f048@176d53b2
+[Architectury Transformer DEBUG]  - dev.architectury.transformer.transformers.TransformForgeEnvironment$$Lambda/0x000001fcd70cb9f8@64c87930
 [Architectury Transformer DEBUG] Remapping Classes:
 [Architectury Transformer DEBUG] net/fabricmc/api/EnvType -> net/minecraftforge/api/distmarker/Dist
 [Architectury Transformer DEBUG] net/fabricmc/api/Environment -> net/minecraftforge/api/distmarker/OnlyIn
 [Architectury Transformer DEBUG] Found class transformer
 [Architectury Transformer DEBUG] Writing com/lightlybyte/arsenic/Arsenic with maxs=true frames=true
+[Architectury Transformer DEBUG] Writing com/lightlybyte/arsenic/ChunkManager with maxs=true frames=true
 [Architectury Transformer DEBUG] Writing com/lightlybyte/arsenic/RenderManager with maxs=true frames=true
 [Architectury Transformer DEBUG] Writing com/lightlybyte/arsenic/culling/FrustumCuller with maxs=true frames=true
-[Architectury Transformer DEBUG] Writing com/lightlybyte/arsenic/culling/CullingTask with maxs=true frames=true
 [Architectury Transformer DEBUG] Writing com/lightlybyte/arsenic/culling/CullingTask$ChunkBounds with maxs=true frames=true
+[Architectury Transformer DEBUG] Writing com/lightlybyte/arsenic/culling/CullingTask with maxs=true frames=true
+[Architectury Transformer DEBUG] Writing com/lightlybyte/arsenic/culling/FrustumCuller$ChunkBounds with maxs=true frames=true
 [Architectury Transformer DEBUG] Writing com/lightlybyte/arsenic/culling/CullingTask$Result with maxs=true frames=true
+[Architectury Transformer DEBUG] Writing com/lightlybyte/arsenic/math/MathHelper with maxs=true frames=true
+[Architectury Transformer DEBUG] Writing com/lightlybyte/arsenic/math/FastNoise with maxs=true frames=true
+[Architectury Transformer DEBUG] Writing com/lightlybyte/arsenic/math/FastMatrix with maxs=true frames=true
+[Architectury Transformer DEBUG] Writing com/lightlybyte/arsenic/math/ParallelMath with maxs=true frames=true
 [Architectury Transformer DEBUG] Writing com/lightlybyte/arsenic/math/Frustum with maxs=true frames=true
-[Architectury Transformer DEBUG] Writing com/lightlybyte/arsenic/threading/ThreadManager$TaskPriority with maxs=true frames=true
+[Architectury Transformer DEBUG] Writing com/lightlybyte/arsenic/math/Frustum$ShadowCullResult with maxs=true frames=true
+[Architectury Transformer DEBUG] Writing com/lightlybyte/arsenic/math/Frustum$BoundingSphere with maxs=true frames=true
 [Architectury Transformer DEBUG] Writing com/lightlybyte/arsenic/threading/ThreadManager with maxs=true frames=true
-[Architectury Transformer DEBUG] Checking whether /arsenic.mixins.json is a mixin config.
-[Architectury Transformer DEBUG] Checking whether /arsenic.mixins.json is a mixin config.
-[Architectury Transformer DEBUG] Found mixin config(s): arsenic.mixins.json
-[Architectury Transformer DEBUG] Appended Launch Argument: [--mixin.config, arsenic.mixins.json]
-[Architectury Transformer DEBUG] Closed File Systems for C:\Users\light\AppData\Local\Temp\5680956723308652790.jar
+[Architectury Transformer DEBUG] Writing com/lightlybyte/arsenic/threading/ThreadManager$TaskPriority with maxs=true frames=true
+[Architectury Transformer DEBUG] Closed File Systems for C:\Users\light\AppData\Local\Temp\1083579498585432204.jar
 [Architectury Transformer] Listening at C:\Users\light\OneDrive\Desktop\Arsenic\common\build\devlibs\arsenic-common-1.0.0-dev.jar
-[Architectury Transformer DEBUG] Temporary jar [C:\Users\light\AppData\Local\Temp\5680956723308652790.jar] contains packages: com.lightlybyte.arsenic.threading, com.lightlybyte.arsenic.culling, com.lightlybyte.arsenic, com.lightlybyte.arsenic.math
+[Architectury Transformer DEBUG] Temporary jar [C:\Users\light\AppData\Local\Temp\1083579498585432204.jar] contains packages: com.lightlybyte.arsenic.threading, com.lightlybyte.arsenic.culling, com.lightlybyte.arsenic, com.lightlybyte.arsenic.math
 [Architectury Transformer DEBUG] Closed File Systems for C:\Users\light\OneDrive\Desktop\Arsenic\common\build\devlibs\arsenic-common-1.0.0-dev.jar
-[Architectury Transformer DEBUG] Classpath entry [C:\Users\light\OneDrive\Desktop\Arsenic\forge\build\classes\java\main] contains packages: com.lightlybyte.forge
+[Architectury Transformer DEBUG] Classpath entry [C:\Users\light\OneDrive\Desktop\Arsenic\forge\build\classes\java\main] contains packages: com.lightlybyte.forge.client, com.lightlybyte.forge.mixin, com.lightlybyte.forge
 [Architectury Transformer DEBUG] Classpath entry [C:\Users\light\OneDrive\Desktop\Arsenic\forge\build\resources\main] contains packages: 
 [Architectury Transformer DEBUG] Transforming from com/lightlybyte/arsenic/Arsenic.class to com/lightlybyte/arsenic/Arsenic.class with 8 transformer(s) on dev.architectury.transformer.handler.TinyRemapperPreparedTransformerHandler
 [Architectury Transformer DEBUG] Remapping with 1 mapping provider(s):
-[Architectury Transformer DEBUG]  - dev.architectury.transformer.transformers.TransformForgeEnvironment$$Lambda/0x000001921b08f048@176d53b2
+[Architectury Transformer DEBUG]  - dev.architectury.transformer.transformers.TransformForgeEnvironment$$Lambda/0x000001fcd70cb9f8@64c87930
 [Architectury Transformer DEBUG] Remapping with Dirty Mappings...
 [Architectury Transformer DEBUG] Remapping Classes:
 [Architectury Transformer DEBUG] net/fabricmc/api/EnvType -> net/minecraftforge/api/distmarker/Dist
 [Architectury Transformer DEBUG] net/fabricmc/api/Environment -> net/minecraftforge/api/distmarker/OnlyIn
 [Architectury Transformer DEBUG] Found class transformer
 [Architectury Transformer DEBUG] Writing com/lightlybyte/arsenic/Arsenic with maxs=true frames=true
-[Architectury Transformer DEBUG] Transformed com/lightlybyte/arsenic/Arsenic in 797.3 ms
+[Architectury Transformer DEBUG] Transformed com/lightlybyte/arsenic/Arsenic in 460.0 ms
 [Architectury Transformer DEBUG] Transforming from com/lightlybyte/arsenic/threading/ThreadManager.class to com/lightlybyte/arsenic/threading/ThreadManager.class with 8 transformer(s) on dev.architectury.transformer.handler.TinyRemapperPreparedTransformerHandler
 [Architectury Transformer DEBUG] Remapping with 1 mapping provider(s):
-[Architectury Transformer DEBUG]  - dev.architectury.transformer.transformers.TransformForgeEnvironment$$Lambda/0x000001921b08f048@176d53b2
+[Architectury Transformer DEBUG]  - dev.architectury.transformer.transformers.TransformForgeEnvironment$$Lambda/0x000001fcd70cb9f8@64c87930
 [Architectury Transformer DEBUG] Remapping Classes:
 [Architectury Transformer DEBUG] net/fabricmc/api/EnvType -> net/minecraftforge/api/distmarker/Dist
 [Architectury Transformer DEBUG] net/fabricmc/api/Environment -> net/minecraftforge/api/distmarker/OnlyIn
 [Architectury Transformer DEBUG] Found class transformer
 [Architectury Transformer DEBUG] Writing com/lightlybyte/arsenic/threading/ThreadManager with maxs=true frames=true
-[Architectury Transformer DEBUG] Transformed com/lightlybyte/arsenic/threading/ThreadManager in 188.8 ms
-[Architectury Transformer DEBUG] Transforming from com/lightlybyte/arsenic/RenderManager.class to com/lightlybyte/arsenic/RenderManager.class with 8 transformer(s) on dev.architectury.transformer.handler.TinyRemapperPreparedTransformerHandler
+[Architectury Transformer DEBUG] Transformed com/lightlybyte/arsenic/threading/ThreadManager in 99.37 ms
+[Architectury Transformer DEBUG] Transforming from com/lightlybyte/arsenic/ChunkManager.class to com/lightlybyte/arsenic/ChunkManager.class with 8 transformer(s) on dev.architectury.transformer.handler.TinyRemapperPreparedTransformerHandler
 [Architectury Transformer DEBUG] Remapping with 1 mapping provider(s):
-[Architectury Transformer DEBUG]  - dev.architectury.transformer.transformers.TransformForgeEnvironment$$Lambda/0x000001921b08f048@176d53b2
+[Architectury Transformer DEBUG]  - dev.architectury.transformer.transformers.TransformForgeEnvironment$$Lambda/0x000001fcd70cb9f8@64c87930
 [Architectury Transformer DEBUG] Remapping Classes:
 [Architectury Transformer DEBUG] net/fabricmc/api/EnvType -> net/minecraftforge/api/distmarker/Dist
 [Architectury Transformer DEBUG] net/fabricmc/api/Environment -> net/minecraftforge/api/distmarker/OnlyIn
 [Architectury Transformer DEBUG] Found class transformer
-[Architectury Transformer DEBUG] Writing com/lightlybyte/arsenic/RenderManager with maxs=true frames=true
-[Architectury Transformer DEBUG] Transformed com/lightlybyte/arsenic/RenderManager in 152.5 ms
+[Architectury Transformer DEBUG] Writing com/lightlybyte/arsenic/ChunkManager with maxs=true frames=true
+[Architectury Transformer DEBUG] Transformed com/lightlybyte/arsenic/ChunkManager in 167.9 ms
 [Architectury Transformer DEBUG] Transforming from com/lightlybyte/arsenic/culling/FrustumCuller.class to com/lightlybyte/arsenic/culling/FrustumCuller.class with 8 transformer(s) on dev.architectury.transformer.handler.TinyRemapperPreparedTransformerHandler
 [Architectury Transformer DEBUG] Remapping with 1 mapping provider(s):
-[Architectury Transformer DEBUG]  - dev.architectury.transformer.transformers.TransformForgeEnvironment$$Lambda/0x000001921b08f048@176d53b2
+[Architectury Transformer DEBUG]  - dev.architectury.transformer.transformers.TransformForgeEnvironment$$Lambda/0x000001fcd70cb9f8@64c87930
 [Architectury Transformer DEBUG] Remapping Classes:
 [Architectury Transformer DEBUG] net/fabricmc/api/EnvType -> net/minecraftforge/api/distmarker/Dist
 [Architectury Transformer DEBUG] net/fabricmc/api/Environment -> net/minecraftforge/api/distmarker/OnlyIn
 [Architectury Transformer DEBUG] Found class transformer
 [Architectury Transformer DEBUG] Writing com/lightlybyte/arsenic/culling/FrustumCuller with maxs=true frames=true
-[Architectury Transformer DEBUG] Transformed com/lightlybyte/arsenic/culling/FrustumCuller in 149.8 ms
+[Architectury Transformer DEBUG] Transformed com/lightlybyte/arsenic/culling/FrustumCuller in 114.4 ms
 [Architectury Transformer DEBUG] Transforming from com/lightlybyte/arsenic/math/Frustum.class to com/lightlybyte/arsenic/math/Frustum.class with 8 transformer(s) on dev.architectury.transformer.handler.TinyRemapperPreparedTransformerHandler
 [Architectury Transformer DEBUG] Remapping with 1 mapping provider(s):
-[Architectury Transformer DEBUG]  - dev.architectury.transformer.transformers.TransformForgeEnvironment$$Lambda/0x000001921b08f048@176d53b2
+[Architectury Transformer DEBUG]  - dev.architectury.transformer.transformers.TransformForgeEnvironment$$Lambda/0x000001fcd70cb9f8@64c87930
 [Architectury Transformer DEBUG] Remapping Classes:
 [Architectury Transformer DEBUG] net/fabricmc/api/EnvType -> net/minecraftforge/api/distmarker/Dist
 [Architectury Transformer DEBUG] net/fabricmc/api/Environment -> net/minecraftforge/api/distmarker/OnlyIn
 [Architectury Transformer DEBUG] Found class transformer
 [Architectury Transformer DEBUG] Writing com/lightlybyte/arsenic/math/Frustum with maxs=true frames=true
-[Architectury Transformer DEBUG] Transformed com/lightlybyte/arsenic/math/Frustum in 117.6 ms
+[Architectury Transformer DEBUG] Transformed com/lightlybyte/arsenic/math/Frustum in 125.7 ms
+[Architectury Transformer DEBUG] Transforming from com/lightlybyte/arsenic/RenderManager.class to com/lightlybyte/arsenic/RenderManager.class with 8 transformer(s) on dev.architectury.transformer.handler.TinyRemapperPreparedTransformerHandler
+[Architectury Transformer DEBUG] Remapping with 1 mapping provider(s):
+[Architectury Transformer DEBUG]  - dev.architectury.transformer.transformers.TransformForgeEnvironment$$Lambda/0x000001fcd70cb9f8@64c87930
+[Architectury Transformer DEBUG] Remapping Classes:
+[Architectury Transformer DEBUG] net/fabricmc/api/EnvType -> net/minecraftforge/api/distmarker/Dist
+[Architectury Transformer DEBUG] net/fabricmc/api/Environment -> net/minecraftforge/api/distmarker/OnlyIn
+[Architectury Transformer DEBUG] Found class transformer
+[Architectury Transformer DEBUG] Writing com/lightlybyte/arsenic/RenderManager with maxs=true frames=true
+[Architectury Transformer DEBUG] Transformed com/lightlybyte/arsenic/RenderManager in 62.53 ms
+[Architectury Transformer DEBUG] Transforming from com/lightlybyte/arsenic/culling/CullingTask$ChunkBounds.class to com/lightlybyte/arsenic/culling/CullingTask$ChunkBounds.class with 8 transformer(s) on dev.architectury.transformer.handler.TinyRemapperPreparedTransformerHandler
+[Architectury Transformer DEBUG] Remapping with 1 mapping provider(s):
+[Architectury Transformer DEBUG]  - dev.architectury.transformer.transformers.TransformForgeEnvironment$$Lambda/0x000001fcd70cb9f8@64c87930
+[Architectury Transformer DEBUG] Remapping Classes:
+[Architectury Transformer DEBUG] net/fabricmc/api/EnvType -> net/minecraftforge/api/distmarker/Dist
+[Architectury Transformer DEBUG] net/fabricmc/api/Environment -> net/minecraftforge/api/distmarker/OnlyIn
+[Architectury Transformer DEBUG] Found class transformer
+[Architectury Transformer DEBUG] Writing com/lightlybyte/arsenic/culling/CullingTask$ChunkBounds with maxs=true frames=true
+[Architectury Transformer DEBUG] Transformed com/lightlybyte/arsenic/culling/CullingTask$ChunkBounds in 74.36 ms
+[Architectury Transformer DEBUG] Transforming from com/lightlybyte/arsenic/culling/FrustumCuller$ChunkBounds.class to com/lightlybyte/arsenic/culling/FrustumCuller$ChunkBounds.class with 8 transformer(s) on dev.architectury.transformer.handler.TinyRemapperPreparedTransformerHandler
+[Architectury Transformer DEBUG] Remapping with 1 mapping provider(s):
+[Architectury Transformer DEBUG]  - dev.architectury.transformer.transformers.TransformForgeEnvironment$$Lambda/0x000001fcd70cb9f8@64c87930
+[Architectury Transformer DEBUG] Remapping Classes:
+[Architectury Transformer DEBUG] net/fabricmc/api/EnvType -> net/minecraftforge/api/distmarker/Dist
+[Architectury Transformer DEBUG] net/fabricmc/api/Environment -> net/minecraftforge/api/distmarker/OnlyIn
+[Architectury Transformer DEBUG] Found class transformer
+[Architectury Transformer DEBUG] Writing com/lightlybyte/arsenic/culling/FrustumCuller$ChunkBounds with maxs=true frames=true
+[Architectury Transformer DEBUG] Transformed com/lightlybyte/arsenic/culling/FrustumCuller$ChunkBounds in 87.90 ms

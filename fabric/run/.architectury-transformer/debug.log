@@ -114,49 +114,68 @@
 [Architectury Transformer DEBUG]  - C:\Users\light\OneDrive\Desktop\Arsenic\.gradle\loom-cache\remapped_mods\remapped\net\fabricmc\fabric-api\fabric-resource-loader-v0-525a49f8\0.11.12+fb82e9d777\fabric-resource-loader-v0-525a49f8-0.11.12+fb82e9d777.jar
 [Architectury Transformer DEBUG]  - C:\Users\light\OneDrive\Desktop\Arsenic\.gradle\loom-cache\remapped_mods\remapped\net\fabricmc\fabric-api\fabric-sound-api-v1-525a49f8\1.0.14+1802ada577\fabric-sound-api-v1-525a49f8-1.0.14+1802ada577.jar
 [Architectury Transformer DEBUG]  - C:\Users\light\OneDrive\Desktop\Arsenic\.gradle\loom-cache\remapped_mods\remapped\net\fabricmc\fabric-api\fabric-transitive-access-wideners-v1-525a49f8\4.3.2+1802ada577\fabric-transitive-access-wideners-v1-525a49f8-4.3.2+1802ada577.jar
-[Architectury Transformer] Read classpath in 4.308 s
+[Architectury Transformer] Read classpath in 3.972 s
 [Architectury Transformer DEBUG] Closed File Systems for C:\Users\light\OneDrive\Desktop\Arsenic\common\build\devlibs\arsenic-common-1.0.0-dev.jar
-[Architectury Transformer DEBUG] Transforming 5 transformer(s) from C:\Users\light\OneDrive\Desktop\Arsenic\common\build\devlibs\arsenic-common-1.0.0-dev.jar to C:\Users\light\AppData\Local\Temp\2365527239951193301.jar: 
-[Architectury Transformer DEBUG]  - dev.architectury.transformer.transformers.RuntimeMixinRefmapDetector@5bcea91b
-[Architectury Transformer DEBUG]  - dev.architectury.transformer.transformers.GenerateFakeFabricMod@5f3a4b84
-[Architectury Transformer DEBUG]  - dev.architectury.transformer.transformers.TransformExpectPlatform@27f723
-[Architectury Transformer DEBUG]  - dev.architectury.transformer.transformers.RemapInjectables@670b40af
-[Architectury Transformer DEBUG]  - dev.architectury.transformer.transformers.TransformPlatformOnly@4923ab24
-[Architectury Transformer DEBUG] Transforming from C:\Users\light\OneDrive\Desktop\Arsenic\common\build\devlibs\arsenic-common-1.0.0-dev.jar to C:\Users\light\AppData\Local\Temp\2365527239951193301.jar with 5 transformer(s) on dev.architectury.transformer.handler.SimpleTransformerHandler
+[Architectury Transformer DEBUG] Transforming 5 transformer(s) from C:\Users\light\OneDrive\Desktop\Arsenic\common\build\devlibs\arsenic-common-1.0.0-dev.jar to C:\Users\light\AppData\Local\Temp\14574788539224674380.jar: 
+[Architectury Transformer DEBUG]  - dev.architectury.transformer.transformers.RuntimeMixinRefmapDetector@66d1af89
+[Architectury Transformer DEBUG]  - dev.architectury.transformer.transformers.GenerateFakeFabricMod@8646db9
+[Architectury Transformer DEBUG]  - dev.architectury.transformer.transformers.TransformExpectPlatform@37374a5e
+[Architectury Transformer DEBUG]  - dev.architectury.transformer.transformers.RemapInjectables@4671e53b
+[Architectury Transformer DEBUG]  - dev.architectury.transformer.transformers.TransformPlatformOnly@2db7a79b
+[Architectury Transformer DEBUG] Transforming from C:\Users\light\OneDrive\Desktop\Arsenic\common\build\devlibs\arsenic-common-1.0.0-dev.jar to C:\Users\light\AppData\Local\Temp\14574788539224674380.jar with 5 transformer(s) on dev.architectury.transformer.handler.SimpleTransformerHandler
 [Architectury Transformer DEBUG] Found class transformer
 [Architectury Transformer DEBUG] Writing com/lightlybyte/arsenic/Arsenic with maxs=true frames=true
+[Architectury Transformer DEBUG] Writing com/lightlybyte/arsenic/ChunkManager with maxs=true frames=true
 [Architectury Transformer DEBUG] Writing com/lightlybyte/arsenic/RenderManager with maxs=true frames=true
 [Architectury Transformer DEBUG] Writing com/lightlybyte/arsenic/culling/CullingTask$ChunkBounds with maxs=true frames=true
 [Architectury Transformer DEBUG] Writing com/lightlybyte/arsenic/culling/CullingTask$Result with maxs=true frames=true
 [Architectury Transformer DEBUG] Writing com/lightlybyte/arsenic/culling/CullingTask with maxs=true frames=true
+[Architectury Transformer DEBUG] Writing com/lightlybyte/arsenic/culling/FrustumCuller$ChunkBounds with maxs=true frames=true
 [Architectury Transformer DEBUG] Writing com/lightlybyte/arsenic/culling/FrustumCuller with maxs=true frames=true
+[Architectury Transformer DEBUG] Writing com/lightlybyte/arsenic/math/FastMatrix with maxs=true frames=true
+[Architectury Transformer DEBUG] Writing com/lightlybyte/arsenic/math/FastNoise with maxs=true frames=true
+[Architectury Transformer DEBUG] Writing com/lightlybyte/arsenic/math/Frustum$BoundingSphere with maxs=true frames=true
+[Architectury Transformer DEBUG] Writing com/lightlybyte/arsenic/math/Frustum$ShadowCullResult with maxs=true frames=true
 [Architectury Transformer DEBUG] Writing com/lightlybyte/arsenic/math/Frustum with maxs=true frames=true
+[Architectury Transformer DEBUG] Writing com/lightlybyte/arsenic/math/MathHelper with maxs=true frames=true
+[Architectury Transformer DEBUG] Writing com/lightlybyte/arsenic/math/ParallelMath with maxs=true frames=true
 [Architectury Transformer DEBUG] Writing com/lightlybyte/arsenic/threading/ThreadManager$TaskPriority with maxs=true frames=true
 [Architectury Transformer DEBUG] Writing com/lightlybyte/arsenic/threading/ThreadManager with maxs=true frames=true
-[Architectury Transformer DEBUG] Checking whether /arsenic.mixins.json is a mixin config.
-[Architectury Transformer DEBUG] Closed File Systems for C:\Users\light\AppData\Local\Temp\2365527239951193301.jar
+[Architectury Transformer DEBUG] Closed File Systems for C:\Users\light\AppData\Local\Temp\14574788539224674380.jar
 [Architectury Transformer] Listening at C:\Users\light\OneDrive\Desktop\Arsenic\common\build\devlibs\arsenic-common-1.0.0-dev.jar
-[Architectury Transformer DEBUG] Temporary jar [C:\Users\light\AppData\Local\Temp\2365527239951193301.jar] contains packages: com.lightlybyte.arsenic.threading, com.lightlybyte.arsenic.culling, com.lightlybyte.arsenic, com.lightlybyte.arsenic.math
+[Architectury Transformer DEBUG] Temporary jar [C:\Users\light\AppData\Local\Temp\14574788539224674380.jar] contains packages: com.lightlybyte.arsenic.threading, com.lightlybyte.arsenic.culling, com.lightlybyte.arsenic, com.lightlybyte.arsenic.math
 [Architectury Transformer DEBUG] Closed File Systems for C:\Users\light\OneDrive\Desktop\Arsenic\common\build\devlibs\arsenic-common-1.0.0-dev.jar
-[Architectury Transformer DEBUG] Classpath entry [C:\Users\light\OneDrive\Desktop\Arsenic\fabric\build\classes\java\main] contains packages: com.lightlybyte.fabric, com.lightlybyte.fabric.client
+[Architectury Transformer DEBUG] Classpath entry [C:\Users\light\OneDrive\Desktop\Arsenic\fabric\build\classes\java\main] contains packages: com.lightlybyte.fabric, com.lightlybyte.fabric.client, com.lightlybyte.fabric.mixin
 [Architectury Transformer DEBUG] Classpath entry [C:\Users\light\OneDrive\Desktop\Arsenic\fabric\build\resources\main] contains packages: 
 [Architectury Transformer DEBUG] Transforming from com/lightlybyte/arsenic/Arsenic.class to com/lightlybyte/arsenic/Arsenic.class with 5 transformer(s) on dev.architectury.transformer.handler.TinyRemapperPreparedTransformerHandler
 [Architectury Transformer DEBUG] Found class transformer
 [Architectury Transformer DEBUG] Writing com/lightlybyte/arsenic/Arsenic with maxs=true frames=true
-[Architectury Transformer DEBUG] Transformed com/lightlybyte/arsenic/Arsenic in 2.899 ms
+[Architectury Transformer DEBUG] Transformed com/lightlybyte/arsenic/Arsenic in 20.56 ms
 [Architectury Transformer DEBUG] Transforming from com/lightlybyte/arsenic/threading/ThreadManager.class to com/lightlybyte/arsenic/threading/ThreadManager.class with 5 transformer(s) on dev.architectury.transformer.handler.TinyRemapperPreparedTransformerHandler
 [Architectury Transformer DEBUG] Found class transformer
 [Architectury Transformer DEBUG] Writing com/lightlybyte/arsenic/threading/ThreadManager with maxs=true frames=true
-[Architectury Transformer DEBUG] Transformed com/lightlybyte/arsenic/threading/ThreadManager in 6.808 ms
-[Architectury Transformer DEBUG] Transforming from com/lightlybyte/arsenic/RenderManager.class to com/lightlybyte/arsenic/RenderManager.class with 5 transformer(s) on dev.architectury.transformer.handler.TinyRemapperPreparedTransformerHandler
+[Architectury Transformer DEBUG] Transformed com/lightlybyte/arsenic/threading/ThreadManager in 69.08 ms
+[Architectury Transformer DEBUG] Transforming from com/lightlybyte/arsenic/ChunkManager.class to com/lightlybyte/arsenic/ChunkManager.class with 5 transformer(s) on dev.architectury.transformer.handler.TinyRemapperPreparedTransformerHandler
 [Architectury Transformer DEBUG] Found class transformer
-[Architectury Transformer DEBUG] Writing com/lightlybyte/arsenic/RenderManager with maxs=true frames=true
-[Architectury Transformer DEBUG] Transformed com/lightlybyte/arsenic/RenderManager in 4.371 ms
+[Architectury Transformer DEBUG] Writing com/lightlybyte/arsenic/ChunkManager with maxs=true frames=true
+[Architectury Transformer DEBUG] Transformed com/lightlybyte/arsenic/ChunkManager in 11.50 ms
 [Architectury Transformer DEBUG] Transforming from com/lightlybyte/arsenic/culling/FrustumCuller.class to com/lightlybyte/arsenic/culling/FrustumCuller.class with 5 transformer(s) on dev.architectury.transformer.handler.TinyRemapperPreparedTransformerHandler
 [Architectury Transformer DEBUG] Found class transformer
 [Architectury Transformer DEBUG] Writing com/lightlybyte/arsenic/culling/FrustumCuller with maxs=true frames=true
-[Architectury Transformer DEBUG] Transformed com/lightlybyte/arsenic/culling/FrustumCuller in 6.704 ms
+[Architectury Transformer DEBUG] Transformed com/lightlybyte/arsenic/culling/FrustumCuller in 19.80 ms
 [Architectury Transformer DEBUG] Transforming from com/lightlybyte/arsenic/math/Frustum.class to com/lightlybyte/arsenic/math/Frustum.class with 5 transformer(s) on dev.architectury.transformer.handler.TinyRemapperPreparedTransformerHandler
 [Architectury Transformer DEBUG] Found class transformer
 [Architectury Transformer DEBUG] Writing com/lightlybyte/arsenic/math/Frustum with maxs=true frames=true
-[Architectury Transformer DEBUG] Transformed com/lightlybyte/arsenic/math/Frustum in 2.291 ms
+[Architectury Transformer DEBUG] Transformed com/lightlybyte/arsenic/math/Frustum in 28.77 ms
+[Architectury Transformer DEBUG] Transforming from com/lightlybyte/arsenic/RenderManager.class to com/lightlybyte/arsenic/RenderManager.class with 5 transformer(s) on dev.architectury.transformer.handler.TinyRemapperPreparedTransformerHandler
+[Architectury Transformer DEBUG] Found class transformer
+[Architectury Transformer DEBUG] Writing com/lightlybyte/arsenic/RenderManager with maxs=true frames=true
+[Architectury Transformer DEBUG] Transformed com/lightlybyte/arsenic/RenderManager in 16.31 ms
+[Architectury Transformer DEBUG] Transforming from com/lightlybyte/arsenic/culling/CullingTask$ChunkBounds.class to com/lightlybyte/arsenic/culling/CullingTask$ChunkBounds.class with 5 transformer(s) on dev.architectury.transformer.handler.TinyRemapperPreparedTransformerHandler
+[Architectury Transformer DEBUG] Found class transformer
+[Architectury Transformer DEBUG] Writing com/lightlybyte/arsenic/culling/CullingTask$ChunkBounds with maxs=true frames=true
+[Architectury Transformer DEBUG] Transformed com/lightlybyte/arsenic/culling/CullingTask$ChunkBounds in 1.286 ms
+[Architectury Transformer DEBUG] Transforming from com/lightlybyte/arsenic/culling/FrustumCuller$ChunkBounds.class to com/lightlybyte/arsenic/culling/FrustumCuller$ChunkBounds.class with 5 transformer(s) on dev.architectury.transformer.handler.TinyRemapperPreparedTransformerHandler
+[Architectury Transformer DEBUG] Found class transformer
+[Architectury Transformer DEBUG] Writing com/lightlybyte/arsenic/culling/FrustumCuller$ChunkBounds with maxs=true frames=true
+[Architectury Transformer DEBUG] Transformed com/lightlybyte/arsenic/culling/FrustumCuller$ChunkBounds in 840.0 μs

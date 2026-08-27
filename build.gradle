@@ -1,57 +1,74 @@
 plugins {
-    id 'com.gradleup.shadow'
-}
-
-loom {
-    forge {
-        mixinConfig "arsenic.mixins.json"
-    }
+    id 'dev.architectury.loom' version '1.17-SNAPSHOT' apply false
+    id 'architectury-plugin' version '3.5-SNAPSHOT'
+    id 'com.gradleup.shadow' version '9.4.3' apply false
 }
 
 architectury {
-    platformSetupLoomIde()
-    forge()
+    minecraft = project.minecraft_version
 }
 
-configurations {
-    common {
-        canBeResolved = true
-        canBeConsumed = false
+allprojects {
+    group = rootProject.maven_group
+    version = rootProject.mod_version
+}
+
+subprojects {
+    apply plugin: 'dev.architectury.loom'
+    apply plugin: 'architectury-plugin'
+    apply plugin: 'maven-publish'
+
+    base {
+        // Set up a suffixed format for the mod jar names, e.g. `example-fabric`.
+        archivesName = "$rootProject.archives_name-$project.name"
     }
-    compileClasspath.extendsFrom common
-    runtimeClasspath.extendsFrom common
-    developmentForge.extendsFrom common
 
-    shadowBundle {
-        canBeResolved = true
-        canBeConsumed = false
+    repositories {
+        // Add repositories to retrieve artifacts from in here.
+        // You should only use this when depending on other mods because
+        // Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
+        // See https://docs.gradle.org/current/userguide/declaring_repositories.html
+        // for more information about repositories.
     }
-}
 
-dependencies {
-    // THIS IS REQUIRED - Forge dependency
-    forge "net.minecraftforge:forge:${rootProject.forge_version}"
-
-    // Architectury API
-    modImplementation "dev.architectury:architectury-forge:${rootProject.architectury_api_version}"
-
-    common(project(path: ':common', configuration: 'namedElements')) { transitive = false }
-    shadowBundle project(path: ':common', configuration: 'transformProductionForge')
-}
-
-processResources {
-    inputs.property 'version', project.version
-
-    filesMatching('META-INF/mods.toml') {
-        expand version: inputs.properties.version
+    loom {
+        silentMojangMappingsLicense()
     }
-}
 
-shadowJar {
-    configurations = [project.configurations.shadowBundle]
-    archiveClassifier = 'dev-shadow'
-}
+    dependencies {
+        minecraft "net.minecraft:minecraft:$rootProject.minecraft_version"
+        mappings loom.officialMojangMappings()
+    }
 
-remapJar {
-    inputFile.set shadowJar.archiveFile
+    java {
+        // Loom will automatically attach sourcesJar to a RemapSourcesJar task and to the "build" task
+        // if it is present.
+        // If you remove this line, sources will not be generated.
+        withSourcesJar()
+
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+
+    tasks.withType(JavaCompile).configureEach {
+        it.options.release = 17
+    }
+
+    // Configure Maven publishing.
+    publishing {
+        publications {
+            mavenJava(MavenPublication) {
+                artifactId = base.archivesName.get()
+                from components.java
+            }
+        }
+
+        // See https://docs.gradle.org/current/userguide/publishing_maven.html for information on how to set up publishing.
+        repositories {
+            // Add repositories to publish to here.
+            // Notice: This block does NOT have the same function as the block in the top level.
+            // The repositories here will be used for publishing your artifact, not for
+            // retrieving dependencies.
+        }
+    }
 }
