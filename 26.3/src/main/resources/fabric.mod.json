@@ -1,0 +1,38 @@
+{
+	"schemaVersion": 1,
+	"id": "arsenic",
+	"version": "${version}",
+	"name": "Arsenic",
+	"description": "This is an example description! Tell everyone what your mod is about!",
+	"authors": [
+		"Me!"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/arsenic/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"com.lightlybyt.Arsenic"
+		],
+		"client": [
+			"com.lightlybyt.client.ArsenicClient"
+		]
+	},
+	"mixins": [
+		"arsenic.mixins.json",
+		{
+			"config": "arsenic.client.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.19.5",
+		"minecraft": "~26.3",
+		"java": ">=25",
+		"fabric-api": "*"
+	}
+}
